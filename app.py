@@ -26,26 +26,9 @@ def show_welcome_message():
     print()
     print("If you can't unmute one of the speakers in alsamixer, choose option 1 and then try again.")
 
-def check_and_install_dependencies():
-    try:
-        subprocess.run(["python3", "--version"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        print("Python3 is already installed.")
-    except subprocess.CalledProcessError:
-        print("Python3 not found, installing...")
-        subprocess.run(["sudo", "apt", "install", "-y", "python3"])
-    try:
-        subprocess.run(["git", "--version"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        print("Git is already installed.")
-    except FileNotFoundError:
-        print("Git not found, installing...")
-        subprocess.run(["sudo", "apt", "install", "-y", "git"])
-    except subprocess.CalledProcessError as e:
-        print(f"Error checking git: {e}")
-
 def install_chromebook_audio_drivers():
     clear_terminal()
     print("Installing Chromebook audio drivers, please wait...")
-    check_and_install_dependencies()
     try:
         subprocess.run(["git", "clone", "https://github.com/WeirdTreeThing/chromebook-linux-audio.git"], check=True)
         print("Repository cloned successfully.")
