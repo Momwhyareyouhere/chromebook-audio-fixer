@@ -4,7 +4,7 @@ import time
 
 def update_system():
     try:
-        print("Enter your sudo password to update the system...")
+        print("Enter your sudo password:")
         subprocess.run(["sudo", "apt", "update"], check=True)
         print("System updated successfully.")
         return True
